@@ -32,7 +32,17 @@ class Rainbow: UIView {
     @IBInspectable var secondCapRadius: CGFloat = 20.0
     @IBInspectable var thirdCapRadius: CGFloat = 20.0
     
-    func addOval(lineWidth: CGFloat, path: CGPathRef, strokeStart: CGFloat, strokeEnd: CGFloat, strokeColor: UIColor, fillColor: UIColor, shadowRadius: CGFloat, shadowOpacity: Float, shadowOffsset: CGSize) {
+    var value: CGFloat = 0.0 {
+        willSet{
+            print("Will change value!")
+        }
+        didSet{
+            innerRadius = value
+            self.setNeedsDisplay()
+        }
+    }
+    
+    private func addOval(lineWidth: CGFloat, path: CGPathRef, strokeStart: CGFloat, strokeEnd: CGFloat, strokeColor: UIColor, fillColor: UIColor, shadowRadius: CGFloat, shadowOpacity: Float, shadowOffsset: CGSize) {
         
         let arc = CAShapeLayer()
         arc.lineWidth = lineWidth
@@ -48,7 +58,7 @@ class Rainbow: UIView {
         layer.addSublayer(arc)
     }
     
-    func addCirle(arcRadius: CGFloat, capRadius: CGFloat, color: UIColor) {
+    private func addCirle(arcRadius: CGFloat, capRadius: CGFloat, color: UIColor) {
         let X = CGRectGetMidX(self.bounds)
         let Y = CGRectGetMidY(self.bounds)
         print(X,Y)

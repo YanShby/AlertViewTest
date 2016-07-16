@@ -24,7 +24,7 @@ private class AlterViewSize {
     
 }
 
-class AlterView: UIView{
+class AlterView: UIView {
     
     var bgControl: UIControl = UIControl(frame: CGRectMake(0,0,ScreenSize().screenWidth,ScreenSize().screenHeight))
     var bgControlColor: UIColor =  UIColor ( red: 0.3144, green: 0.3144, blue: 0.3144, alpha: 0.5 )
@@ -70,7 +70,8 @@ class AlterView: UIView{
         rainbowView.layer.masksToBounds = true
         self.setBackgroundColor()
         self.addView()
-        inView.addSubview(self)
+        inView.addSubview(bgControl)
+        bgControl.addTarget(self, action: #selector(dismiss), forControlEvents: .TouchUpInside)
 
     }
     
@@ -122,7 +123,7 @@ class AlterView: UIView{
             alterView.transform = CGAffineTransformMakeTranslation(0,0)
             break
         }
-        UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
             self.alterView.transform = CGAffineTransformIdentity
             self.bgControl.alpha = 1
             }, completion: nil)
